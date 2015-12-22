@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import net.tsz.afinal.*;
+import com.zjwtnt_demo.views.*;
 
 public class MainActivity extends Activity {
 
@@ -12,6 +13,9 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		TitleView com_header = (TitleView)findViewById(R.id.header);
+		com_header.setTitleText(this.getResources().getString(R.string.title_activity_main));
+		com_header.setLeftButtonShow(false);
 	}
 
 	@Override

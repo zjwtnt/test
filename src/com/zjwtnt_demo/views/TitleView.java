@@ -3,8 +3,10 @@ package com.zjwtnt_demo.views;
 
 
 import com.zjwtnt_demo.main.R;
+
 import android.app.*;
 import android.content.*;
+import android.opengl.Visibility;
 import android.util.*;
 import android.view.*;
 import android.widget.*;
@@ -40,6 +42,10 @@ public class TitleView extends FrameLayout {
   
     public void setLeftButtonListener(OnClickListener l) {  
         leftButton.setOnClickListener(l);  
-    }  
+    }
+    
+    public void setLeftButtonShow(boolean isshow){
+    	leftButton.setVisibility(isshow?View.VISIBLE:View.INVISIBLE);
+    }
   
 }  
