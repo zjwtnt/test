@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import net.tsz.afinal.*;
+import com.zjwtnt_demo.adapter.*;
+
 import com.zjwtnt_demo.views.*;
 
 public class MainActivity extends Activity {
@@ -16,7 +19,7 @@ public class MainActivity extends Activity {
 		TitleView com_header = (TitleView)findViewById(R.id.header);
 		com_header.setTitleText(this.getResources().getString(R.string.title_activity_main));
 		com_header.setLeftButtonShow(false);
-
+		showlist();
 	}
 
 	@Override
@@ -36,5 +39,10 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	private void showlist(){
+		ListView list = (ListView)findViewById(R.id.MyListView);
+		list.setAdapter(new IndexPicAdapter(this));
 	}
 }
