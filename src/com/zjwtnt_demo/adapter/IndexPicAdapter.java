@@ -1,11 +1,7 @@
 package com.zjwtnt_demo.adapter;
 
-
-
 import java.util.ArrayList;
-
 import com.zjwtnt_demo.main.R;
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
