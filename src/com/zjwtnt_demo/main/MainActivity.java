@@ -1,17 +1,24 @@
 package com.zjwtnt_demo.main;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.TextView;
 import net.tsz.afinal.*;
-import com.zjwtnt_demo.adapter.*;
+import net.tsz.afinal.http.AjaxCallBack;
 
+import com.zjwtnt_demo.adapter.*;
+import com.zjwtnt_demo.bean.*;
 import com.zjwtnt_demo.views.*;
+import com.zjwtnt_demo.net.*;
 
 public class MainActivity extends Activity {
-
+	private static final String ACTIVITY_TAG="LogDemo";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -42,7 +49,35 @@ public class MainActivity extends Activity {
 	}
 	
 	private void showlist(){
+		ArrayList<news> news_list;
+		
+		httpget ht = new httpget();				
+		String json = ht.Get("http://www.china-way.com/tmp.php");
+		
+		/*
+		FinalHttp fh = new FinalHttp();
+        fh.get("http://www.china-way.com/tmp.php", new AjaxCallBack(){
+
+            @Override
+            public void onSuccess(Object t) {
+            	TextView tv = (TextView)findViewById(R.id.textview1);
+            	tv.setText(t.toString());
+            }
+            
+            @Override
+            public void onFailure(Throwable t, int errorNo, String strMsg) {
+            	//textview1.setText(strMsg);
+            	TextView tv = (TextView)findViewById(R.id.textview1);
+            	tv.setText(strMsg);
+            }
+
+        });
+        */
+    	TextView tv = (TextView)findViewById(R.id.textview1);
+    	tv.setText("aaa="+json);
+		Log.v(ACTIVITY_TAG,json);
 		ListView list = (ListView)findViewById(R.id.MyListView);
+		
 		list.setAdapter(new IndexPicAdapter(this));
 	}
 }
