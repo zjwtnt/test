@@ -1,7 +1,10 @@
 package com.zjwtnt_demo.adapter;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import com.zjwtnt_demo.main.R;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -11,6 +14,13 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.*;
+
+import net.tsz.afinal.http.AjaxCallBack;
+
+import com.zjwtnt_demo.bean.*;
+
+
 public class IndexPicAdapter  extends BaseAdapter{
     View [] itemViews;  
     private ArrayList titles=new ArrayList();
@@ -18,7 +28,7 @@ public class IndexPicAdapter  extends BaseAdapter{
     private Context context;
     private LayoutInflater inflater;
     
-    public IndexPicAdapter(Context context2){    	
+    public IndexPicAdapter(AjaxCallBack ajaxCallBack,Context context2, List<news> map){    	
     	
     	for(int i=0;i<100;i++){
     		titles.add((Object)(String.valueOf(i)+"БъЬт"));
@@ -35,7 +45,9 @@ public class IndexPicAdapter  extends BaseAdapter{
        
     }
     
-    
+ 
+
+
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub

@@ -1,6 +1,8 @@
 package com.zjwtnt_demo.main;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -16,6 +18,9 @@ import com.zjwtnt_demo.adapter.*;
 import com.zjwtnt_demo.bean.*;
 import com.zjwtnt_demo.views.*;
 import com.zjwtnt_demo.net.*;
+import com.alibaba.*;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 
 public class MainActivity extends Activity {
 	private static final String ACTIVITY_TAG="LogDemo";
@@ -51,33 +56,38 @@ public class MainActivity extends Activity {
 	private void showlist(){
 		ArrayList<news> news_list;
 		
-		httpget ht = new httpget();				
-		String json = ht.Get("http://www.china-way.com/tmp.php");
+		//httpget ht = new httpget();				
+		//String json = ht.Get("http://www.china-way.com/tmp.php");
 		
-		/*
+		
 		FinalHttp fh = new FinalHttp();
         fh.get("http://www.china-way.com/tmp.php", new AjaxCallBack(){
 
             @Override
             public void onSuccess(Object t) {
-            	TextView tv = (TextView)findViewById(R.id.textview1);
-            	tv.setText(t.toString());
+            	String json = t.toString();
+            	if(json!=""){
+            		//Map<String, news> map = JSON.parseObject(json, new TypeReference<Map<String,news>>(){});
+            		List<news> map = JSON.parseArray(json, news.class);
+            		ListView list = (ListView)findViewById(R.id.MyListView);
+            		list.setAdapter(new IndexPicAdapter(null,this,map));
+            	}
             }
             
             @Override
             public void onFailure(Throwable t, int errorNo, String strMsg) {
             	//textview1.setText(strMsg);
-            	TextView tv = (TextView)findViewById(R.id.textview1);
-            	tv.setText(strMsg);
+            	//TextView tv = (TextView)findViewById(R.id.textview1);
+            	//tv.setText(strMsg);
             }
 
         });
-        */
-    	TextView tv = (TextView)findViewById(R.id.textview1);
-    	tv.setText("aaa="+json);
-		Log.v(ACTIVITY_TAG,json);
-		ListView list = (ListView)findViewById(R.id.MyListView);
+        
+    	//TextView tv = (TextView)findViewById(R.id.textview1);
+    	//tv.setText("aaa="+json);
+		//Log.v(ACTIVITY_TAG,json);
 		
-		list.setAdapter(new IndexPicAdapter(this));
+		
+		
 	}
 }
