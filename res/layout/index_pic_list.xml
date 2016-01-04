@@ -12,7 +12,9 @@
            android:layout_width="wrap_content"    
            android:layout_height="fill_parent"
            android:contentDescription="@string/sys_null"
-           android:src="@drawable/ic_launcher" >
+           android:src="@drawable/ic_launcher" 
+           
+           >
            
        </ImageView>
   

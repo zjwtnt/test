@@ -70,15 +70,14 @@ public class MainActivity extends Activity {
             		//Map<String, news> map = JSON.parseObject(json, new TypeReference<Map<String,news>>(){});
             		List<news> map = JSON.parseArray(json, news.class);
             		ListView list = (ListView)findViewById(R.id.MyListView);
-            		list.setAdapter(new IndexPicAdapter(null,this,map));
+            		list.setAdapter(new IndexPicAdapter(map,getBaseContext()));
             	}
             }
+   
             
             @Override
             public void onFailure(Throwable t, int errorNo, String strMsg) {
-            	//textview1.setText(strMsg);
-            	//TextView tv = (TextView)findViewById(R.id.textview1);
-            	//tv.setText(strMsg);
+    
             }
 
         });

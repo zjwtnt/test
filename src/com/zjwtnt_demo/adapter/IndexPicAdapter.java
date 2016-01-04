@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import java.util.*;
 
+import net.tsz.afinal.FinalBitmap;
 import net.tsz.afinal.http.AjaxCallBack;
 
 import com.zjwtnt_demo.bean.*;
@@ -25,22 +26,28 @@ public class IndexPicAdapter  extends BaseAdapter{
     View [] itemViews;  
     private ArrayList titles=new ArrayList();
 	private ArrayList texts=new ArrayList();
-    private Context context;
+	private ArrayList thumbs=new ArrayList();
+    private Context context2;
     private LayoutInflater inflater;
     
-    public IndexPicAdapter(AjaxCallBack ajaxCallBack,Context context2, List<news> map){    	
-    	
-    	for(int i=0;i<100;i++){
-    		titles.add((Object)(String.valueOf(i)+"±êÌâ"));
-    		texts.add("aaa³Ê¹þ¹þ È«"+String.valueOf(i));
+    public IndexPicAdapter(List<news> map,Context context){    	
+    	super();
+    	for(int i=0;i<map.size();i++){
+    		news row = map.get(i);
+    		titles.add((Object)row.getTitle());
+    		texts.add(row.getTitle()+"...");
+    		thumbs.add(row.getThumb());
     	}
-    	itemViews = new View[titles.size()]; 
-        this.context = context2;
-        inflater = LayoutInflater.from(context);
+    	int size = titles.size();
+    	itemViews = new View[size]; 
+        this.context2 = context;//getContext();//getLayoutInflater();//context2;
+        inflater = LayoutInflater.from(context2);
         //this.inflater = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);        
         for (int i=0; i<titles.size(); i++){  
             itemViews[i] = makeItemView(String.valueOf(titles.get(i)),
-            		String.valueOf(texts.get(i)));  
+            		String.valueOf(texts.get(i)),
+            		String.valueOf(thumbs.get(i))	
+            				);  
         }
        
     }
@@ -79,7 +86,7 @@ public class IndexPicAdapter  extends BaseAdapter{
 		*/
 	}
 	
-	private View makeItemView(String strTitle, String strText) { 
+	private View makeItemView(String strTitle, String strText,String strThumb) { 
 		
 		/*
         LayoutInflater inflater = (LayoutInflater)this.context
@@ -102,6 +109,16 @@ public class IndexPicAdapter  extends BaseAdapter{
         ImageView image = (ImageView)itemView.findViewById(R.id.itemImage);  
         image.setImageResource(resId);  
           */
+         ImageView image = (ImageView)itemView.findViewById(R.id.thumb);
+        
+         image.setAdjustViewBounds(true); 
+         image.setMaxWidth(200);
+         image.setMinimumWidth(10);
+         image.setPadding(5, 5, 20, 5);
+         //new FinalBitmap(context2).init().display(image, strThumb);
+         FinalBitmap fb = FinalBitmap.create(context2);
+         fb.configLoadingImage(R.drawable.loding);
+         fb.display(image, strThumb);
         return itemView;  
     }  
 
