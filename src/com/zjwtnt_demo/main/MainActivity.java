@@ -24,6 +24,7 @@ import com.alibaba.fastjson.TypeReference;
 
 public class MainActivity extends Activity {
 	private static final String ACTIVITY_TAG="LogDemo";
+	public static MainActivity mactivity;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,6 +32,7 @@ public class MainActivity extends Activity {
 		TitleView com_header = (TitleView)findViewById(R.id.header);
 		com_header.setTitleText(this.getResources().getString(R.string.title_activity_main));
 		com_header.setLeftButtonShow(false);
+		mactivity=this;
 		showlist();
 	}
 

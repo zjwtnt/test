@@ -3,9 +3,13 @@ package com.zjwtnt_demo.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.zjwtnt_demo.main.MainActivity;
 import com.zjwtnt_demo.main.R;
+import com.zjwtnt_demo.main.ViewNewsActivity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +19,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.app.Activity;
 
 import java.util.*;
 
@@ -187,7 +192,15 @@ i
         @Override  
         public void onClick(View v) {  
             // TODO Auto-generated method stub  
-            Toast.makeText(context2, String.valueOf(ids.get(mPosition)), Toast.LENGTH_SHORT).show();  
+            Intent intent = new Intent(MainActivity.mactivity,ViewNewsActivity.class);
+            Bundle bundle=new Bundle();
+            bundle.putString("id", "1");
+            //用intent.putExtra(String name, String value);来传递参数。
+            intent.putExtras(bundle);              
+            //intent.setClass(MainActivity.mactivity ViewNewsActivity.class);
+            //context2.startActivity(intent);
+            MainActivity.mactivity.startActivity(intent);
+            //Toast.makeText(context2, String.valueOf(ids.get(mPosition)), Toast.LENGTH_SHORT).show();  
         }  
           
     } 
