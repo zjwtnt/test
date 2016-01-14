@@ -4,6 +4,13 @@ public class news {
 	private String id;
 	private String title;
 	private String thumb;
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	private String content;
 	
 	public String getId() {
 		return id;

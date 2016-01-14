@@ -102,7 +102,7 @@ i
             
                  
             convertView = inflater.inflate(R.layout.index_pic_list, null);  
-            holder.title =(TextView)convertView.findViewById(R.id.title);  
+            holder.title = (TextView)convertView.findViewById(R.id.title);  
             holder.content = (TextView)convertView.findViewById(R.id.content);
             holder.image = (ImageView)convertView.findViewById(R.id.thumb);
            
@@ -136,7 +136,7 @@ i
 		*/
 	}
 	
-	private View makeItemView(String strTitle, String strText,String strThumb,int position) { 
+	private View makeItemView(int id,String strTitle, String strText,String strThumb,int position) { 
 		
 		/*
         LayoutInflater inflater = (LayoutInflater)this.context
@@ -194,7 +194,7 @@ i
             // TODO Auto-generated method stub  
             Intent intent = new Intent(MainActivity.mactivity,ViewNewsActivity.class);
             Bundle bundle=new Bundle();
-            bundle.putString("id", "1");
+            bundle.putString("id", String.valueOf(ids.get(mPosition)));
             //用intent.putExtra(String name, String value);来传递参数。
             intent.putExtras(bundle);              
             //intent.setClass(MainActivity.mactivity ViewNewsActivity.class);
