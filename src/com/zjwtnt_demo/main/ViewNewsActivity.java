@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings.LayoutAlgorithm;
+import android.webkit.WebSettings.TextSize;
 import android.webkit.WebView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -94,7 +95,9 @@ public class ViewNewsActivity extends Activity {
             				//×ÔÊÊÓ¦ÆÁÄ»
             				wv_content.getSettings().setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN);
             				wv_content.getSettings().setLoadWithOverviewMode(true);
-            				wv_content.loadData(map.get(i).getContent(), "text/html", "GBK");
+            				wv_content.getSettings().setTextSize(TextSize.LARGEST);
+            				//wv_content.loadData(map.get(i).getContent(), "text/html", "GBK");
+            				wv_content.loadDataWithBaseURL(null, map.get(i).getContent(), "text/html","UTF-8", null);
             				break;
             			}
             		}
