@@ -27,15 +27,17 @@
         </activity>
         <activity
             android:name=".ViewNewsActivity"
-            android:label="@string/title_activity_view_news" 
             android:exported="true"
-            >
-            
-         <intent-filter>
-             <action android:name="com.zjwtnt_demo.main.ViewNewsActivity" />
-                <!-- action android:name="android.intent.action.MAIN" /-->
+            android:label="@string/title_activity_view_news" >
+            <intent-filter>
+                <action android:name="com.zjwtnt_demo.main.ViewNewsActivity" />
+                <!-- action android:name="android.intent.action.MAIN" / -->
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>            
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".NewslistActivity"
+            android:label="@string/title_activity_newslist" >
         </activity>
     </application>
 
