@@ -35,6 +35,8 @@ import net.tsz.afinal.http.AjaxCallBack;
 
 import com.zjwtnt_demo.adapter.*;
 import com.zjwtnt_demo.bean.*;
+import com.zjwtnt_demo.database.SQLHelper;
+import com.zjwtnt_demo.database.SQLHelper2;
 import com.zjwtnt_demo.views.*;
 import com.zjwtnt_demo.net.*;
 import com.alibaba.*;
@@ -69,7 +71,10 @@ public class MainActivity extends Activity implements OnPageChangeListener {
 		com_header.setLeftButtonShow(false);
 		mactivity=this;
 		
-       
+		/*
+		SQLHelper hl = new SQLHelper(this);
+       */
+		SQLHelper2 hl2 =new SQLHelper2(this);
         
 		//focusimg();
 		getfocusimg();

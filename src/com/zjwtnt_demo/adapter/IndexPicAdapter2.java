@@ -31,17 +31,17 @@ import net.tsz.afinal.http.AjaxCallBack;
 import com.zjwtnt_demo.bean.*;
 
 
-public class IndexPicAdapter  extends BaseAdapter{
+public class IndexPicAdapter2  extends BaseAdapter{
     View [] itemViews;  
-    private ArrayList titles=new ArrayList();
-	private ArrayList texts=new ArrayList();
-	private ArrayList thumbs=new ArrayList();
-	private ArrayList ids=new ArrayList();
+
     private Context context2;
     private LayoutInflater inflater;
+    private List<news> map;
     
-    public IndexPicAdapter(List<news> map,Context context){    	
+    public IndexPicAdapter2(Context context){    	
     	super();
+    	
+    	/*
     	for(int i=0;i<map.size();i++){
     		news row = map.get(i);
     		titles.add((Object)row.getTitle());
@@ -51,6 +51,7 @@ public class IndexPicAdapter  extends BaseAdapter{
     	}
     	int size = titles.size();
     	itemViews = new View[size]; 
+    	*/
         this.context2 = context;//getContext();//getLayoutInflater();//context2;
         inflater = LayoutInflater.from(context2);
         /*
@@ -68,19 +69,25 @@ i
        
     }
     
- 
+    /**
+     * bindData用来传递数据给适配器。
+     * @param list
+     */
+    public void bindData(List<news> list) {
+      this.map = list;
+    }
 
 
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return itemViews.length;
+		return map.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
 		// TODO Auto-generated method stub
-		return itemViews[position];
+		return map.get(position);
 	}
 
 	@Override
@@ -98,14 +105,7 @@ i
          myListener=new MyListener(position);  
         if (convertView == null) {  
               
-            if (position % 2 == 1)
-            {
-            	//convertView.setBackgroundColor(Color.parseColor("#E0FFFF"));
-            } 
-            else
-            {
-            	//convertView.setBackgroundColor(Color.WHITE);
-            }        	
+        	
             holder=new ViewHolder();    
               
             //可以理解为从vlist获取view  之后把view返回给ListView  
@@ -120,10 +120,17 @@ i
         }else {               
             holder = (ViewHolder)convertView.getTag();  
         }  
-
-        holder.id = Integer.parseInt(String.valueOf(ids.get(position)));
-        holder.title.setText((String)titles.get(position));  
-        holder.content.setText((String)texts.get(position));  
+        if (position % 2 == 1)
+        {
+        	convertView.setBackgroundColor(Color.parseColor("#E0FFFF"));
+        } 
+        else
+        {
+        	convertView.setBackgroundColor(Color.WHITE);
+        } 
+        holder.id = Integer.parseInt(String.valueOf(map.get(position).getId()));
+        holder.title.setText((String)map.get(position).getTitle());  
+        holder.content.setText((String)map.get(position).getTitle());  
         //holder.image.setTag(position);  
         //给Button添加单击事件  添加Button之后ListView将失去焦点  需要的直接把Button的焦点去掉
         holder.image.setClickable(true);
@@ -136,7 +143,7 @@ i
         //holder.viewBtn.setOnClickListener(MyListener(position));  
         FinalBitmap fb = FinalBitmap.create(context2);
         fb.configLoadingImage(R.drawable.loding);
-        fb.display(holder.image, String.valueOf(thumbs.get(position)));          		
+        fb.display(holder.image, String.valueOf(map.get(position).getThumb()));          		
         convertView.setOnClickListener(myListener);
 		return convertView;
 		/*
@@ -207,7 +214,7 @@ i
             // TODO Auto-generated method stub  
             Intent intent = new Intent(MainActivity.mactivity,ViewNewsActivity.class);
             Bundle bundle=new Bundle();
-            bundle.putString("id", String.valueOf(ids.get(mPosition)));
+            bundle.putString("id", String.valueOf(map.get(mPosition).getId()));
             //用intent.putExtra(String name, String value);来传递参数。
             intent.putExtras(bundle);              
             //intent.setClass(MainActivity.mactivity ViewNewsActivity.class);

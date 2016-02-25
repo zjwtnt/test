@@ -1,6 +1,19 @@
 package com.zjwtnt_demo.bean;
 
+import net.tsz.afinal.annotation.sqlite.Id;
+import net.tsz.afinal.annotation.sqlite.Table;
+
+
+@Table(name = "zjw_user") //@Table 表示orm(对象关系映射)的表名  
 public class news {
+	@Id(column="autoid")
+	private int autoid;
+	public int getAutoid() {
+		return autoid;
+	}
+	public void setAutoid(int autoid) {
+		this.autoid = autoid;
+	}
 	private String id;
 	private String title;
 	private String thumb;

@@ -5,6 +5,10 @@
     android:text="@string/loader_footer"
     android:layout_gravity="center_horizontal"
     android:id="@+id/loader_footer"
+    android:gravity="center"
+    android:background="#ffffff"
+    android:paddingTop="3dp"
+    android:paddingBottom="3dp"
     >
     
 
