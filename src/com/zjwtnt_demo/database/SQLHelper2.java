@@ -12,7 +12,7 @@ import com.zjwtnt_demo.bean.*;
 public class SQLHelper2 implements DbUpdateListener {
 
 	
-	private static final int VERSION = 2; 
+	private static final int VERSION = 4; 
 	private static final String dbname = "zjwtnt_demo3.db";
 	
 	private Context mContext ;
@@ -37,16 +37,20 @@ public class SQLHelper2 implements DbUpdateListener {
 		sql_v1+= "name TEXT NULL,";
 		sql_v1+= "id  INT NULL";
 		sql_v1+= ");";
+		
+		String sql_v4 = "alter table zjwtnt_newstype add thumb text null;";
+	
 		if(arg0.isOpen()){
-			arg0.execSQL(sql_v1);
-		}		
-		if(arg1==1 && arg2==2){
-			if(arg0.isOpen()){
-				arg0.execSQL(sql_v1);
-			}
+		if(arg1==1 && arg2==2){			
+			arg0.execSQL(sql_v1);				
+		}
+		else if(arg1==3 && arg2==4){
+			arg0.execSQL(sql_v4);
 		}
 		else{
-			String sql = "drop table zjwtnt_newstype";		
+				String sql = "drop table zjwtnt_newstype";	
+			
+			}
 		}
 	}
 
